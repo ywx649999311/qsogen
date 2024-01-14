@@ -36,10 +36,13 @@ And then run the SED model many times, using filter wav arrays as input wavlen:
     convert to magnitude, return colours or mags as appropriate
 
 """
-
+import os
 import numpy as np
+import qso_gen
 from scipy.integrate import simps
-from qsosed import Quasar_sed
+from qso_gen.qsosed import Quasar_sed
+
+_c_ = 299792458.0  # speed of light in m/s
 
 # assume 2007 Vega spectrum has zero magnitude in all bands
 Vega_zeropoints = dict(
@@ -135,7 +138,6 @@ AB_zeropoints = dict(
 
 zeropoints = {**Vega_zeropoints, **AB_zeropoints}
 
-
 wavarrs, resparrs = dict(), dict()
 for band in ['GALEX_NUV',
              'GALEX_FUV',
@@ -183,7 +185,7 @@ for band in ['GALEX_NUV',
     try:
         wavarr, response = np.genfromtxt(band+'.filter', unpack=True)
     except OSError:
-        wavarr, response = np.genfromtxt('filters/'+band+'.filter', unpack=True)
+        wavarr, response = np.genfromtxt(qso_gen.__root__+'/filters/'+band+'.filter', unpack=True)
     wavarrs[band] = wavarr
     resparrs[band] = response
 
@@ -436,7 +438,7 @@ def produce_zeropoints(system='Vega',
     print(system + '_zeropoints = dict(')
 
     if system == 'Vega':
-        wav_Vega, flux_Vega = np.genfromtxt('vega_2007.lis', unpack=True)
+        wav_Vega, flux_Vega = np.genfromtxt(qso_gen.__root__+'/vega_2007.lis', unpack=True)
         # Vega spectrum
         fluxes = [np.interp(wav, wav_Vega, flux_Vega) for wav in waves]
 
