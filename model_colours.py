@@ -134,6 +134,11 @@ AB_zeropoints = dict(
     WISE_W2_AB=2.450814e-02,
     WISE_W3_AB=4.859685e-02,
     WISE_W4_AB=2.006357e-02,
+    PS1_g_AB=1.846876e-02,
+    PS1_r_AB=2.230496e-02,
+    PS1_i_AB=2.187912e-02,
+    PS1_z_AB=1.493968e-02,
+    PS1_y_AB=5.963320e-03,    
 )
 
 zeropoints = {**Vega_zeropoints, **AB_zeropoints}
@@ -165,6 +170,11 @@ for band in ['GALEX_NUV',
              'LSST_i',
              'LSST_z',
              'LSST_y',
+             'PS1_g',
+             'PS1_r',
+             'PS1_i',
+             'PS1_z',
+             'PS1_y',             
              'Euclid_Y',
              'Euclid_J',
              'Euclid_H',
