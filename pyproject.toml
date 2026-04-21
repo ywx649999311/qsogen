@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qsogen"
+version = "0.0.0"
+description = "Local vendored qsogen package"
+requires-python = ">=3.10"
+dependencies = [
+    "astropy>=6.1",
+    "numpy>=1.26",
+    "scipy>=1.11",
+]
+
+[tool.setuptools]
+include-package-data = true
+packages = ["qsogen"]
+
+[tool.setuptools.package-dir]
+qsogen = "."
+
+[tool.setuptools.package-data]
+qsogen = [
+    "*.dat",
+    "*.lis",
+    "*.sed",
+    "*.sph",
+    "filters/*.filter",
+    "filters/*.md",
+]
